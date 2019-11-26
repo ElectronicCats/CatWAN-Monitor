@@ -1,0 +1,74 @@
+{
+  "name": "ReactApp",
+  "version": "0.1.0",
+  "private": false,
+  "author": "Oscar Eduardo Raygoza",
+  "description": "React + Electron + Redux",
+  "dependencies": {
+    "@csstools/normalize.css": "10.1.0",
+    "@material-ui/core": "^4.5.1",
+    "@material-ui/icons": "^4.5.1",
+    "body-parser": "1.19.0",
+    "bootstrap": "^4.3.1",
+    "electron-is-dev": "^1.1.0",
+    "express": "4.17.1",
+    "lodash": "^4.17.15",
+    "mdbreact": "4.21.0",
+    "node-sass": "4.12.0",
+    "react": "16.9.0",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-dom": "16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "react-spinner-material": "1.1.3",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  },
+  "homepage": "./",
+  "main": "build/electron.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build ",
+    "server": "nodemon src/server/index.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-pack": "electron-builder -w",
+    "preelectron-pack": "npm run build",
+    "electron-dev": "concurrently \"SET BROWSER=none npm react-start\" \"wait-on http://localhost:3000 && electron .\" && npm run server"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "appId": "com.reactapp-electron-redux.electron-cra",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "electron": "^7.0.1",
+    "electron-builder": "^21.2.0",
+    "nodemon": "^1.19.2",
+    "wait-on": "^3.3.0"
+  }
+}

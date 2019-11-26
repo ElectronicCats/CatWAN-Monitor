@@ -1,0 +1,96 @@
+@import "../../global.scss";
+
+.container-animation {
+  width: 400px;
+  height: 220px;
+  position: relative;
+}
+
+.h1,
+.h2 {
+  font-size: 5px;
+  text-transform: uppercase;
+
+  .span {
+    width: 100%;
+    float: left;
+    color: var(--aqua);
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    transform: translateY(-50px);
+    opacity: 0;
+    animation-name: titleAnimation;
+    animation-timing-function: ease;
+    animation-duration: 4s;
+    margin-left: 50px;
+  }
+}
+.h1 .span {
+  animation-delay: 0.6s;
+  -webkit-animation-fill-mode: forwards;
+
+  &:first-child {
+    animation-delay: 0.7s;
+  }
+
+  &:last-child {
+    color: var(--greenAqua);
+    animation-delay: 0.5s;
+  }
+}
+
+.h2 {
+  top: 0;
+  position: absolute;
+
+  .span {
+    animation-delay: 4.1s;
+    -webkit-animation-fill-mode: forwards;
+
+    &:first-child {
+      animation-delay: 4.2s;
+    }
+
+    &:last-child {
+      color: var(--greenlime);
+      animation-delay: 4s;
+    }
+  }
+}
+
+@keyframes titleAnimation {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+  }
+  20% {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+  }
+  80% {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+    display: none;
+  }
+}
+
+.table {
+  color: #000000;
+  margin-top: -15%;
+}
+.table-processing {
+  color: #000000;
+  margin-top: 0%;
+}
