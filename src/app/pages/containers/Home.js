@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 /**
  * Components
  */
-import Loader from "../../components/Loader";
+import GridContainer from "../../components/containers/GridContainer";
 
 /**
  * Sass
@@ -14,7 +14,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: false
     };
   }
   
@@ -22,11 +22,7 @@ class Home extends Component {
     console.log(this.state);
     return (
       <Fragment>
-        {this.state.loading && (
-          <div className="loader">
-            <Loader />
-          </div>
-        )}
+        <GridContainer />
       </Fragment>
     );
   }
