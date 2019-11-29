@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -13,6 +13,7 @@ import {
 import MainComponent from "./components/MainComponent";
 import OBCSim from "./simulation/obc-sim";
 
+import Navbar from "./components/Navbar";
 
 const launchpad = "/dev/tty.usbmodemHL512001";
 
@@ -85,8 +86,12 @@ const rootElement = document.querySelector(
 // Render the main component, the parent for everything else on the page
 // Wrap the app and allow redux store access
 ReactDOM.render(
-  <Provider store={store}>
-    <MainComponent />
-  </Provider>,
+  <Fragment>
+    <Navbar />
+
+    <Provider store={store}>
+      <MainComponent />
+    </Provider>
+  </Fragment>,
   rootElement
 );

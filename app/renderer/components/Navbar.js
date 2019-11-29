@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   MDBNavbar,
-  MDBNavbarBrand,
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
@@ -9,35 +8,18 @@ import {
   MDBCollapse
 } from "mdbreact";
 
-/**
- * assets
- */
-//import logo from "../assets/logo.png";
-
 class NavbarPage extends Component {
-  state = {
-    isOpen: false
-  };
-
-  toggleCollapse = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
   render() {
     return (
-      <MDBNavbar color="indigo" dark expand="md">
-        <MDBNavbarBrand>
-        </MDBNavbarBrand>
-        <MDBNavbarToggler onClick={this.toggleCollapse} />
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-          <MDBNavbarNav left>
-            <MDBNavItem active>
-              <MDBNavLink to="/">Home</MDBNavLink>
-            </MDBNavItem>
-          </MDBNavbarNav>
-          <MDBNavbarNav right></MDBNavbarNav>
-        </MDBCollapse>
-      </MDBNavbar>
+      <nav className="navbar navbar-dark bg-dark mb-3">
+        <a className="navbar-brand" href="#">
+          <h4>
+            <span className="badge badge-secondary">
+              Electronic Cats
+            </span>
+          </h4>
+        </a>
+      </nav>
     );
   }
 }
