@@ -1,0 +1,12 @@
+body{
+    background-color: #333;
+}
+
+.command{
+    background-color: #eee;
+}
+
+.info-bar{
+    margin: 10px 0 30px 0;
+    color: #ccc;
+}

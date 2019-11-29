@@ -1,0 +1,33 @@
+:root {
+  --black: #000;
+  --white: #ffffff;
+  --lime: #b1dd00;
+  --gray: #1d2124;
+  --greenlime: #468a03;
+  --green: #03a65a;
+  --greenAqua: #038c65;
+  --aqua: #04bf8a;
+  --aquaDark: #02735e;
+  --blueDark: #025959;
+  --blueLight: #62828f;
+  --blue: #143954;
+  --error: rgba(204, 27, 27, 0.705);
+  --warning: rgb(238, 238, 31);
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #000;
+}
+

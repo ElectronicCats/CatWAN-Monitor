@@ -1,0 +1,30 @@
+.container__row--col{
+    background-color: var(--gray);
+    margin: 15px;
+    border-radius: 10px;
+    font-size: 4em;
+}
+
+.container__row--span{
+    color: var(--white);
+    padding: 5px;
+    border-radius: 50%;
+    background-color: var(--error);
+}
+
+.container__input{
+    width: 70% !important;
+}
+
+.form-postdata{
+    margin-top: 25px;
+}
+
+.container__input--serial{
+    width: 80% !important;
+}
+
+.container__input--button{
+    background: linear-gradient(to right, #5716f0, #5716f0);
+    color: var(--white);
+}
