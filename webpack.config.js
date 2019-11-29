@@ -1,5 +1,13 @@
 module.exports = {
-    externals: {
-        serialport: true,
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
       }
+    ]
+  },
+  externals: {
+    serialport: true
+  }
 };

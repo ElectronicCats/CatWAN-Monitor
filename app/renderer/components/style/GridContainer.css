@@ -1,15 +1,15 @@
 .container__row--col{
-    background-color: var(--gray);
+    background-color: #5716f0;
     margin: 15px;
     border-radius: 10px;
     font-size: 4em;
 }
 
 .container__row--span{
-    color: var(--white);
+    color: #fff;
     padding: 5px;
     border-radius: 50%;
-    background-color: var(--error);
+    background-color: #5716f0;
 }
 
 .container__input{
@@ -26,5 +26,5 @@
 
 .container__input--button{
     background: linear-gradient(to right, #5716f0, #5716f0);
-    color: var(--white);
+    color: #fff;
 }

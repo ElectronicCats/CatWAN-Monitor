@@ -1,12 +1,53 @@
-body{
-    background-color: #333;
+
+/*
+  Global container 
+*/
+
+.container__row--col{
+    background-color: #0f915f;
+    margin: 15px;
+    border-radius: 10px;
+    font-size: 4em;
 }
 
-.command{
-    background-color: #eee;
+.container__row--span{  
+    color: var(--white);
+    padding: 5px;
+    border-radius: 50%;
+    background-color: var(--error);
 }
 
-.info-bar{
-    margin: 10px 0 30px 0;
-    color: #ccc;
+.container__input{
+    width: 70% !important;
 }
+
+.form-postdata{
+    margin-top: 25px;
+}
+
+.container__input--serial{
+    width: 80% !important;
+}
+
+.container__input--button{
+    background: linear-gradient(to right, #5716f0, #5716f0);
+    color: var(--white);
+}
+
+/*
+    NAVBAR
+*/
+.navbar {
+    background: linear-gradient(to right, #f46b45, #eea849);;
+    color: #000;
+    margin-bottom: 25px;
+  }
+  
+  .logo{
+    width: 30px;
+    border-radius: 50%;
+  }
+  span{
+    color: #000;
+  }
+  

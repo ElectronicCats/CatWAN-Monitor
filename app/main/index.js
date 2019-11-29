@@ -20,8 +20,8 @@ const installExtensions = async () => {
 };
 
 crashReporter.start({
-  productName: 'Dashboard Network Solutions',
-  companyName: 'Electronic Cats',
+  productName: 'YourName',
+  companyName: 'YourCompany',
   submitURL: 'https://your-domain.com/url-to-submit',
   uploadToServer: false,
 });

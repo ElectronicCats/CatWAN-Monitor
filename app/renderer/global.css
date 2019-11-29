@@ -2,7 +2,7 @@
   --black: #000;
   --white: #ffffff;
   --lime: #b1dd00;
-  --gray: #1d2124;
+  --gray: #1f75b8;
   --greenlime: #468a03;
   --green: #03a65a;
   --greenAqua: #038c65;
@@ -31,3 +31,6 @@ h6 {
   color: #000;
 }
 
+body{
+  background-color:  #f2f2f2;
+}

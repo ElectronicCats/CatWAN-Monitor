@@ -9,12 +9,10 @@ import {
   MDBCollapse
 } from "mdbreact";
 
-import "./style/Navbar.scss";
-
 /**
  * assets
  */
-import logo from "../assets/logo.png";
+//import logo from "../assets/logo.png";
 
 class NavbarPage extends Component {
   state = {
@@ -29,7 +27,6 @@ class NavbarPage extends Component {
     return (
       <MDBNavbar color="indigo" dark expand="md">
         <MDBNavbarBrand>
-          <img src={logo} className="logo" alt="" />
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>

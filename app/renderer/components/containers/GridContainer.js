@@ -1,6 +1,6 @@
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import "../style/GridContainer.scss";
+//import "../style/GridContainer.css";
 
 /**
  * Component
@@ -26,7 +26,6 @@ const GridContainer = () => {
         </MDBCol>
       </MDBRow>
       <SerialPortConnection />
-
       <FormGroupPostData />
     </MDBContainer>
   );
