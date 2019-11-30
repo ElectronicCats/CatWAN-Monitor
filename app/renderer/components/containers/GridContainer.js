@@ -7,10 +7,11 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
  */
 import FormGroupPostData from "./FormGroupPostData";
 import SerialPortConnection from "./SerialPortConnection";
-
+import CommandSubmit from '../CommandSubmit'
 const GridContainer = () => {
   return (
     <MDBContainer>
+      {/*<CommandSubmit /> send data from serial port*/}
       <MDBRow className="justify-content-center">
         <MDBCol md="3" className="container__row--col">
           <span className="container__row--span">D1</span>

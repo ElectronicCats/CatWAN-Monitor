@@ -15,9 +15,9 @@ import OBCSim from "./simulation/obc-sim";
 
 import Navbar from "./components/Navbar";
 
-const launchpad = "/dev/tty.usbmodemHL512001";
+const launchpad = "COM3";
 
-const use_real_port = false;
+const use_real_port = true;
 
 // Fake serial port
 // var SerialPort = require('serialport');
@@ -27,13 +27,22 @@ const use_real_port = false;
 // }
 
 const obc = new OBCSim();
-var SerialPort = require("serialport").SerialPort;
+var SerialPort = require("serialport");
 
+function
+let all_ports = [];
+SerialPort.list(function(err, ports) {
+  ports.forEach(function(port) {
+    all_ports.push(port.comName);
+  });
+});
+
+console.log(all_ports);
 if (process.env.NODE_ENV == "development") {
   SerialPort = require("virtual-serialport");
 }
 
-var sp = new SerialPort(launchpad, { baudrate: 115200 }); // still works if NODE_ENV is set to development!
+var sp = new SerialPort(launchpad, { baudrate: 9600 }); // still works if NODE_ENV is set to development!
 
 sp.on("open", function(err) {
   if (use_real_port) {

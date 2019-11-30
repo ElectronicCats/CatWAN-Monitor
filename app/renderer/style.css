@@ -4,7 +4,7 @@
 */
 
 .container__row--col{
-    background-color: #0f915f;
+    background-color: #009066;
     margin: 15px;
     border-radius: 10px;
     font-size: 4em;
@@ -30,7 +30,7 @@
 }
 
 .container__input--button{
-    background: linear-gradient(to right, #5716f0, #5716f0);
+    background: #000;
     color: var(--white);
 }
 
@@ -38,7 +38,7 @@
     NAVBAR
 */
 .navbar {
-    background: linear-gradient(to right, #f46b45, #eea849);;
+    background: #000;
     color: #000;
     margin-bottom: 25px;
   }
