@@ -3,10 +3,9 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 // import SerialPort from 'serialport';
-import Readline from "@serialport/parser-readline";
 import {
-  obcSerialRX,
-  obcSerialRXDev,
+  getSerialPorts,
+  getDataPort,
   sentCommand,
   incrementEpoch
 } from "./actions/houston-actions";
@@ -15,7 +14,7 @@ import OBCSim from "./simulation/obc-sim";
 
 import Navbar from "./components/Navbar";
 
-const launchpad = "COM3";
+const launchpad = "COM3"; // default port
 
 const use_real_port = true;
 
@@ -27,50 +26,20 @@ const use_real_port = true;
 // }
 
 const obc = new OBCSim();
-var SerialPort = require("serialport");
+var SerialPort = require('serialport')
+const Readline = require('@serialport/parser-readline')
 
-function
-let all_ports = [];
-SerialPort.list(function(err, ports) {
-  ports.forEach(function(port) {
-    all_ports.push(port.comName);
-  });
-});
+var sp = new SerialPort(launchpad, { baudRate: 9600 }); // still works if NODE_ENV is set to development!
+const parser = new Readline()
+sp.pipe(parser)
 
-console.log(all_ports);
-if (process.env.NODE_ENV == "development") {
-  SerialPort = require("virtual-serialport");
-}
-
-var sp = new SerialPort(launchpad, { baudrate: 9600 }); // still works if NODE_ENV is set to development!
 
 sp.on("open", function(err) {
-  if (use_real_port) {
-    real_parser.on("data", function(data) {
-      console.log("From serial: " + data);
-      store.dispatch(obcSerialRX(data));
-    });
-  }
-
-  if (process.env.NODE_ENV == "development") {
-    sp.on("dataToDevice", function(data) {
-      // sp.writeToComputer(data + " " + data + "!");
-      store.dispatch(obcSerialRXDev(data));
-    });
-  }
-
-  sp.write("Connected!");
+  console.log("open port!");
+  parser.on("data", function(data) {
+    store.dispatch(getDataPort(data));
+  });
 });
-
-/* OBC Data Simulator */
-setInterval(function() {
-  sp.write(obc.sayRandom());
-}, 15 * 1000); // 60 * 1000 milsec
-
-/* Epoch Tick */
-setInterval(function() {
-  store.dispatch(incrementEpoch());
-}, 1000);
 
 /* State Change Handler */
 function stateChange() {
@@ -86,6 +55,16 @@ function stateChange() {
 store.subscribe(stateChange);
 
 // TODO: SerialPort.list will return good ports
+function SerialPortList(){
+  let all_ports = [];
+  SerialPort.list(function(err, ports) {
+    ports.forEach(function(port) {
+      all_ports.push(port.comName);
+    });
+  });
+  console.log(all_ports);
+  store.dispatch(getSerialPorts(all_ports));
+}
 
 // I think this is just an Electron thing
 const rootElement = document.querySelector(
@@ -97,7 +76,6 @@ const rootElement = document.querySelector(
 ReactDOM.render(
   <Fragment>
     <Navbar />
-
     <Provider store={store}>
       <MainComponent />
     </Provider>

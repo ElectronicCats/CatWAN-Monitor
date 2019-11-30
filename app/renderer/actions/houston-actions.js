@@ -1,4 +1,4 @@
-import { OBC_SERIAL_RX, OBC_SERIAL_RX_DEV, SEND_COMMAND, SENT_COMMAND, INCREMENT_EPOCH, SWITCH_MOCK_OBC} from "./action-types"; // snag the action type string
+import { GET_PORTS, GET_DATA_PORTS, SEND_COMMAND, SENT_COMMAND, INCREMENT_EPOCH  } from "./action-types"; // snag the action type string
 import hash from "object-hash";
 import store from '../store';
 
@@ -25,30 +25,29 @@ function get_epoch(){
     return(state.epoch);
 }
 
-export function obcSerialRX(obcdata_in){
+export function getSerialPorts(data){
     return({
-        type: OBC_SERIAL_RX,
+        type: GET_PORTS,
         payload: {
-            data_type: "OBC RX",
-            id: hash({text: obcdata_in, timestamp: Date()}), 
-            text: obcdata_in,
+            data_type: "SERIAL PORTS",
+            id: hash({timestamp: Date()}), 
+            ports: data,
             epoch_received: get_epoch()  
         }
     });
 }
 
-export function obcSerialRXDev(obcdata_in){
+export function getDataPort(data){
     return({
-        type: OBC_SERIAL_RX_DEV,
+        type: GET_DATA_PORTS,
         payload: {
-            data_type: "OBC RX - DEV",
-            id: hash({text: obcdata_in, timestamp: Date()}), 
-            text: obcdata_in,
-            epoch_received: get_epoch() 
+            data_type: "SERIAL PORTS",
+            id: hash({timestamp: Date()}), 
+            ports: data,
+            epoch_received: get_epoch()  
         }
     });
 }
-
 
 export function sendCommand(cmd_input){
     return({
@@ -69,9 +68,4 @@ export function sentCommand(command){
 
 export function incrementEpoch(){
     return({type: INCREMENT_EPOCH});
-}
-
-export function switchMockOBC(mock_en){
-    return({type: SWITCH_MOCK_OBC, payload: {enable_mock: mock_en}})
-
 }

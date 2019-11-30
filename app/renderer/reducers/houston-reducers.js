@@ -1,7 +1,7 @@
 import {
-  OBC_SERIAL_RX,
-  OBC_SERIAL_RX_DEV,
   SEND_COMMAND,
+  GET_PORTS,
+  GET_DATA_PORTS,
   SENT_COMMAND,
   INCREMENT_EPOCH,
   SWITCH_MOCK_OBC
@@ -9,9 +9,9 @@ import {
 import { strictEqual } from "assert";
 
 const initialState = {
-  obcdata: [],
-  commands: [],
+  ports: [],
   timelinedata: [],
+  commands: [],
   timeline_count: 0, // A counter of how many data items we've received. 
   command_sent_count: 0,
   command_to_send: false,
@@ -27,27 +27,26 @@ const initialState = {
 */
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case OBC_SERIAL_RX:
-      console.log("Data count:", state.timeline_count)
+    case GET_PORTS:
+      console.log("Data count:", state.ports)
       return { ...state,
         /* append a new object to the existing timelinedata list */
-        timelinedata: [...state.timelinedata, {
+        ports: [...state.ports, {
           ...action.payload,
           counter: state.timeline_count
         }],
         timeline_count: state.timeline_count + 1
       };
-
-    case OBC_SERIAL_RX_DEV:
-      console.log("Data count:", state.timeline_count)
+     case GET_PORTS:
+      console.log("Data count:", state.data_port)
       return { ...state,
-        timelinedata: [...state.timelinedata, {
+        /* append a new object to the existing timelinedata list */
+        data_port: [...state.data_port, {
           ...action.payload,
           counter: state.timeline_count
         }],
         timeline_count: state.timeline_count + 1
       };
-
     case SEND_COMMAND:
       console.log("Command", action.payload)
       return { ...state,
