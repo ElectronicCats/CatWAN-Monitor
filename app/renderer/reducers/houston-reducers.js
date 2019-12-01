@@ -1,7 +1,7 @@
 import {
   SEND_COMMAND,
-  GET_PORTS,
-  GET_DATA_PORTS,
+  GET_DATA_PORTS, 
+  SET_SERIAL_PORTS,
   SENT_COMMAND,
   INCREMENT_EPOCH,
   SWITCH_MOCK_OBC
@@ -9,6 +9,9 @@ import {
 import { strictEqual } from "assert";
 
 const initialState = {
+  data_port: {
+    data: "000"
+  },
   ports: [],
   timelinedata: [],
   commands: [],
@@ -27,25 +30,21 @@ const initialState = {
 */
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_PORTS:
+    case SET_SERIAL_PORTS:
       console.log("Data count:", state.ports)
       return { ...state,
         /* append a new object to the existing timelinedata list */
-        ports: [...state.ports, {
+        ports: [state.ports, {
           ...action.payload,
           counter: state.timeline_count
         }],
         timeline_count: state.timeline_count + 1
       };
-     case GET_PORTS:
-      console.log("Data count:", state.data_port)
+     case GET_DATA_PORTS:
       return { ...state,
-        /* append a new object to the existing timelinedata list */
-        data_port: [...state.data_port, {
+        data_port: {
           ...action.payload,
-          counter: state.timeline_count
-        }],
-        timeline_count: state.timeline_count + 1
+        }
       };
     case SEND_COMMAND:
       console.log("Command", action.payload)
@@ -83,4 +82,5 @@ const rootReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export default rootReducer;

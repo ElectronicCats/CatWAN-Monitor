@@ -21,7 +21,7 @@ class SerialPortConnection extends Component {
 
   handleSubmit(event) {
     console.log(this.state);
-    console.log(this.props);
+    console.log(this.props.data_port)
     console.log("CLICK");
     event.preventDefault();
   }
@@ -38,7 +38,8 @@ class SerialPortConnection extends Component {
             value={this.state.status}
             onChange={this.handleChange}
           >
-            {/*all_ports.map(ports =>{
+            {console.log(this.props)
+            /*all_ports.map(ports =>{
                 <option value={ports}>{ports}</option>
               })*/}
           </select>
@@ -55,13 +56,12 @@ class SerialPortConnection extends Component {
 }
 
 
-const mapStateToProps = reducers => {
-  return reducers.rootReducer;
-};
-
+const mapStateToProps = state => ({
+    data_port: state.data_port,
+});
 const mapDispatch = dispatch => (
   {
-      sendCommand: command => dispatch(sendCommand(command))
+      //getPorts: command => dispatch(sendCommand(command))
   }
 );
 

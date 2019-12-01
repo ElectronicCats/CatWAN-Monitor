@@ -4,13 +4,12 @@ import { Provider } from "react-redux";
 import store from "./store";
 // import SerialPort from 'serialport';
 import {
-  getSerialPorts,
+  setSerialPorts,
   getDataPort,
   sentCommand,
   incrementEpoch
 } from "./actions/houston-actions";
 import MainComponent from "./components/MainComponent";
-import OBCSim from "./simulation/obc-sim";
 
 import Navbar from "./components/Navbar";
 
@@ -25,17 +24,26 @@ const use_real_port = true;
 //   SerialPort = require('virtual-serialport');
 // }
 
-const obc = new OBCSim();
-var SerialPort = require('serialport')
-const Readline = require('@serialport/parser-readline')
+var SerialPort = require('serialport');
+const Readline = require('@serialport/parser-readline');
 
 var sp = new SerialPort(launchpad, { baudRate: 9600 }); // still works if NODE_ENV is set to development!
-const parser = new Readline()
-sp.pipe(parser)
+const parser = new Readline();
+sp.pipe(parser);
 
 
 sp.on("open", function(err) {
   console.log("open port!");
+
+  let all_ports = [];
+  SerialPort.list(function(err, ports) {
+    ports.forEach(function(port) {
+      all_ports.push(port.comName);
+    });
+  });
+  console.log(all_ports);
+  store.dispatch(setSerialPorts(all_ports));
+
   parser.on("data", function(data) {
     store.dispatch(getDataPort(data));
   });
@@ -51,21 +59,9 @@ function stateChange() {
     store.dispatch(sentCommand(_state.commands[0]));
   }
 }
+store.dispatch(getDataPort("000"))
 
 store.subscribe(stateChange);
-
-// TODO: SerialPort.list will return good ports
-function SerialPortList(){
-  let all_ports = [];
-  SerialPort.list(function(err, ports) {
-    ports.forEach(function(port) {
-      all_ports.push(port.comName);
-    });
-  });
-  console.log(all_ports);
-  store.dispatch(getSerialPorts(all_ports));
-}
-
 // I think this is just an Electron thing
 const rootElement = document.querySelector(
   document.currentScript.getAttribute("data-container")

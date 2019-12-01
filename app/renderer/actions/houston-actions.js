@@ -1,4 +1,4 @@
-import { GET_PORTS, GET_DATA_PORTS, SEND_COMMAND, SENT_COMMAND, INCREMENT_EPOCH  } from "./action-types"; // snag the action type string
+import { GET_DATA_PORTS, SET_SERIAL_PORTS, SEND_COMMAND, SENT_COMMAND, INCREMENT_EPOCH  } from "./action-types"; // snag the action type string
 import hash from "object-hash";
 import store from '../store';
 
@@ -25,13 +25,13 @@ function get_epoch(){
     return(state.epoch);
 }
 
-export function getSerialPorts(data){
+export function setSerialPorts(data){
     return({
-        type: GET_PORTS,
+        type: SET_SERIAL_PORTS,
         payload: {
             data_type: "SERIAL PORTS",
             id: hash({timestamp: Date()}), 
-            ports: data,
+            Ports: data,
             epoch_received: get_epoch()  
         }
     });
@@ -43,7 +43,7 @@ export function getDataPort(data){
         payload: {
             data_type: "SERIAL PORTS",
             id: hash({timestamp: Date()}), 
-            ports: data,
+            data: data,
             epoch_received: get_epoch()  
         }
     });
