@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as home_actions from "../../actions/houston-actions";
 
-import { test } from "../../modules/ports";
+import { listPorts, connectToSerialPort } from "../../modules/ports";
+connectToSerialPort("COM4");
 
-console.log(test);
 class SerialPortConnection extends Component {
   constructor(props) {
     super(props);
@@ -64,9 +64,6 @@ class SerialPortConnection extends Component {
 
 const mapStateToProps = state => ({
   list_ports: state.list_ports.listports
-});
-const mapDispatch = dispatch => ({
-  //getPorts: command => dispatch(sendCommand(command))
 });
 
 /* Magic to hook up the state to the props */

@@ -1,51 +1,49 @@
-import {
-  setSerialPorts,
-  getDataPort,
-  sentCommand
-} from "../actions/action-types";
+import { setSerialPorts, getDataPort } from "../actions/houston-actions";
+
 import store from "../store";
-
-const launchpad = "COM3"; // default port
-
-var SerialPort = require("serialport");
-const Readline = require("@serialport/parser-readline");
-
+import SerialPort from "serialport";
+import Readline from "@serialport/parser-readline";
 const parser = new Readline();
-var sp = new SerialPort(launchpad, { baudRate: 9600 }); // still works if NODE_ENV is set to development!
-sp.pipe(parser);
 
-sp.on("open", function(err) {
-  console.log("open port!");
 
-  parser.on("data", function(data) {
-    let all_ports = [];
-    SerialPort.list(function(err, ports) {
-      ports.forEach(function(port) {
-        all_ports.push(port.comName);
-      });
+function listPorts() {
+  let all_ports = [];
+
+  SerialPort.list(function(err, ports) {
+    ports.forEach(function(port) {
+      all_ports.push(port.comName);
     });
-    console.log(all_ports);
-    store.dispatch(setSerialPorts(all_ports));
-    store.dispatch(getDataPort(data));
   });
-});
 
-const test = "res"
-
-
-function stateChange() {
-  let _state = store.getState();
-
-  /* Send commands when they are added */
-  if (_state.commands.length > 0 && _state.command_to_send == true) {
-    console.log("Sending command: ", _state.commands[0]);
-    store.dispatch(sentCommand(_state.commands[0]));
-  }
+  console.log(all_ports);
+  store.dispatch(setSerialPorts(all_ports));
 }
 
-store.subscribe(stateChange);
+function connectToSerialPort(port) {
+  let _state = store.getState();
+  console.log(_state);
+
+  /*if (_state.list_items.length > 0) {
+    console.log("State list ports: ", _state.commands[0]);
+    store.dispatch(sentCommand(_state.commands[0]));
+  }*/
+  console.log(port);
+  const launchpad = port != undefined ? port : "COM3"; // default port
+  var sp = new SerialPort(launchpad, { baudRate: 9600 }); // still works if NODE_ENV is set to development!
+  sp.pipe(parser);
+
+  sp.on("open", function(err) {
+    console.log("open port!");
+    parser.on("data", function(data) {
+      store.dispatch(getDataPort(data));
+    });
+  });
+}
+
+store.subscribe(connectToSerialPort);
 store.dispatch(getDataPort("000"));
 
 export default {
-  test
+  listPorts,
+  connectToSerialPort
 };
