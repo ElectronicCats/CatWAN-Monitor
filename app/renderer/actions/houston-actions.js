@@ -25,13 +25,13 @@ function get_epoch(){
     return(state.epoch);
 }
 
-export function setSerialPorts(data){
+export function setSerialPorts(listports){
     return({
         type: SET_SERIAL_PORTS,
         payload: {
-            data_type: "SERIAL PORTS",
+            data_type: "SET_SERIAL_PORTS",
             id: hash({timestamp: Date()}), 
-            Ports: data,
+            listports,
             epoch_received: get_epoch()  
         }
     });

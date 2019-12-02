@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as home_actions from "../../actions/houston-actions";
 
+//import { connectSP } from '../../app';
 
 class SerialPortConnection extends Component {
   constructor(props) {
@@ -14,6 +15,9 @@ class SerialPortConnection extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentDidMount(){
+    console.log(this.props.list_ports)
+  }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -22,6 +26,7 @@ class SerialPortConnection extends Component {
   handleSubmit(event) {
     console.log(this.state);
     console.log(this.props.data_port)
+
     console.log("CLICK");
     event.preventDefault();
   }
@@ -38,11 +43,9 @@ class SerialPortConnection extends Component {
             value={this.state.status}
             onChange={this.handleChange}
           >
-            {console.log(this.props)
-            /*all_ports.map(ports =>{
-                <option value={ports}>{ports}</option>
-              })*/}
+            <option value={this.props.list_ports[0]}>{this.props.list_ports[0]}</option>
           </select>
+            <br />{this.props.list_ports[1]}
           <input
             type="submit"
             className="form-control container__input--button"
@@ -57,7 +60,7 @@ class SerialPortConnection extends Component {
 
 
 const mapStateToProps = state => ({
-    data_port: state.data_port,
+    list_ports: state.list_ports.listports,
 });
 const mapDispatch = dispatch => (
   {

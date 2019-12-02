@@ -12,7 +12,9 @@ const initialState = {
   data_port: {
     data: "000"
   },
-  ports: [],
+  list_ports: {
+    listports: []
+  },
   timelinedata: [],
   commands: [],
   timeline_count: 0, // A counter of how many data items we've received. 
@@ -33,12 +35,9 @@ const rootReducer = (state = initialState, action) => {
     case SET_SERIAL_PORTS:
       console.log("Data count:", state.ports)
       return { ...state,
-        /* append a new object to the existing timelinedata list */
-        ports: [state.ports, {
+        list_ports: {
           ...action.payload,
-          counter: state.timeline_count
-        }],
-        timeline_count: state.timeline_count + 1
+        }
       };
      case GET_DATA_PORTS:
       return { ...state,
