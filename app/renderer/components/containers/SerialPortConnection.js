@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as home_actions from "../../actions/houston-actions";
 
-//import { connectSP } from '../../app';
+import { test } from "../../modules/ports";
 
+console.log(test);
 class SerialPortConnection extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +16,8 @@ class SerialPortConnection extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentDidMount(){
-    console.log(this.props.list_ports)
+  componentDidMount() {
+    console.log(this.props.list_ports);
   }
 
   handleChange(e) {
@@ -25,7 +26,7 @@ class SerialPortConnection extends Component {
 
   handleSubmit(event) {
     console.log(this.state);
-    console.log(this.props.data_port)
+    console.log(this.props.data_port);
 
     console.log("CLICK");
     event.preventDefault();
@@ -43,9 +44,12 @@ class SerialPortConnection extends Component {
             value={this.state.status}
             onChange={this.handleChange}
           >
-            <option value={this.props.list_ports[0]}>{this.props.list_ports[0]}</option>
+            <option value={this.props.list_ports[0]}>
+              {this.props.list_ports[0]}
+            </option>
           </select>
-            <br />{this.props.list_ports[1]}
+          <br />
+          {this.props.list_ports[1]}
           <input
             type="submit"
             className="form-control container__input--button"
@@ -58,15 +62,12 @@ class SerialPortConnection extends Component {
   }
 }
 
-
 const mapStateToProps = state => ({
-    list_ports: state.list_ports.listports,
+  list_ports: state.list_ports.listports
 });
-const mapDispatch = dispatch => (
-  {
-      //getPorts: command => dispatch(sendCommand(command))
-  }
-);
+const mapDispatch = dispatch => ({
+  //getPorts: command => dispatch(sendCommand(command))
+});
 
 /* Magic to hook up the state to the props */
 export default connect(

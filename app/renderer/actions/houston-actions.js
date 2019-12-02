@@ -1,6 +1,12 @@
-import { GET_DATA_PORTS, SET_SERIAL_PORTS, SEND_COMMAND, SENT_COMMAND, INCREMENT_EPOCH  } from "./action-types"; // snag the action type string
+import {
+  GET_DATA_PORTS,
+  SET_SERIAL_PORTS,
+  SEND_COMMAND,
+  SENT_COMMAND,
+  INCREMENT_EPOCH
+} from "./action-types"; // snag the action type string
 import hash from "object-hash";
-import store from '../store';
+import store from "../store";
 
 /*  Actions
     - actions return an object with (minimally) a field called "type," which is a string describing the action to take
@@ -20,52 +26,51 @@ payload: {
 }
 */
 
-function get_epoch(){
-    let state = store.getState();
-    return(state.epoch);
+function get_epoch() {
+  let state = store.getState();
+  return state.epoch;
 }
 
-export function setSerialPorts(listports){
-    return({
-        type: SET_SERIAL_PORTS,
-        payload: {
-            data_type: "SET_SERIAL_PORTS",
-            id: hash({timestamp: Date()}), 
-            listports,
-            epoch_received: get_epoch()  
-        }
-    });
+export function setSerialPorts(listports) {
+  return {
+    type: SET_SERIAL_PORTS,
+    payload: {
+      data_type: "SET_SERIAL_PORTS",
+      id: hash({ timestamp: Date() }),
+      listports,
+      epoch_received: get_epoch()
+    }
+  };
 }
 
-export function getDataPort(data){
-    return({
-        type: GET_DATA_PORTS,
-        payload: {
-            data_type: "SERIAL PORTS",
-            id: hash({timestamp: Date()}), 
-            data: data,
-            epoch_received: get_epoch()  
-        }
-    });
+export function getDataPort(data) {
+  return {
+    type: GET_DATA_PORTS,
+    payload: {
+      data_type: "SERIAL PORTS",
+      id: hash({ timestamp: Date() }),
+      data: data,
+      epoch_received: get_epoch()
+    }
+  };
 }
 
-export function sendCommand(cmd_input){
-    return({
-        type: SEND_COMMAND,
-        payload: {
-            data_type: "COMMAND",
-            id: hash({text: cmd_input.text, timestamp: Date()}),
-            text: cmd_input.command_input,
-            epoch_sent: get_epoch() 
-        }
-    });
+export function sendCommand(cmd_input) {
+  return {
+    type: SEND_COMMAND,
+    payload: {
+      data_type: "COMMAND",
+      id: hash({ text: cmd_input.text, timestamp: Date() }),
+      text: cmd_input.command_input,
+      epoch_sent: get_epoch()
+    }
+  };
 }
 
-export function sentCommand(command){
-    return({type: SENT_COMMAND, payload: command});
+export function sentCommand(command) {
+  return { type: SENT_COMMAND, payload: command };
 }
 
-
-export function incrementEpoch(){
-    return({type: INCREMENT_EPOCH});
+export function incrementEpoch() {
+  return { type: INCREMENT_EPOCH };
 }
