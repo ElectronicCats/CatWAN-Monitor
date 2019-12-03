@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { connect } from "react-redux";
 import * as home_actions from "../../actions/houston-actions";
@@ -11,7 +11,9 @@ class SerialPortConnection extends Component {
 
     this.state = {
       status: "prossesing",
-      port: this.props.list_ports[0]
+      port: this.props.list_ports[0],
+      url: undefined,
+      portUrl: undefined
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,8 +36,16 @@ class SerialPortConnection extends Component {
 
   handleConnect(e) {
     e.preventDefault();
-    actions.CONNECT_TO_SERIALPORT(this.state.port);
+    actions.CONNECT_TO_SERIALPORT(
+      this.state.port,
+      this.state.url,
+      this.state.portUrl
+    );
     console.log(this.state.port);
+  }
+
+  handlePostData(e) {
+    e.preventDefault();
   }
 
   render() {
@@ -53,26 +63,54 @@ class SerialPortConnection extends Component {
       }.bind(this)
     );
     return (
-      <section className="form-postdata">
-        <div className="input-group">
-          <select name="port" onChange={this.handleChange}>
-            <option value="Serialport">Serialport</option>
-            {ports}
-          </select>
-          <input
-            type="submit"
-            className="form-control container__input--button"
-            value="Connect"
-            onClick={this.handleConnect}
-          />
-          <input
-            type="submit"
-            className="form-control container__input--button"
-            value="Refresh"
-            onClick={this.handleRefresh}
-          />
-        </div>
-      </section>
+      <Fragment>
+        <section className="form-postdata">
+          <div className="input-group">
+            <select name="port" onChange={this.handleChange}>
+              <option value="Serialport">Serialport</option>
+              {ports}
+            </select>
+            <input
+              type="submit"
+              className="form-control container__input--button"
+              value="Connect"
+              onClick={this.handleConnect}
+            />
+            <input
+              type="submit"
+              className="form-control container__input--button"
+              value="Refresh"
+              onClick={this.handleRefresh}
+            />
+          </div>
+        </section>
+        <section className="form-postdata">
+          <form action="">
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control container__input"
+                placeholder="Url"
+                name="url"
+                onChange={this.handleChange}
+              />
+              <input
+                type="text"
+                className="form-control container__input--port"
+                placeholder="port"
+                name="portUrl"
+                onChange={this.handleChange}
+              />
+              <input
+                type="submit"
+                className="form-control container__input--button"
+                value="Save"
+                onClick={this.handlePostData}
+              />
+            </div>
+          </form>
+        </section>
+      </Fragment>
     );
   }
 }

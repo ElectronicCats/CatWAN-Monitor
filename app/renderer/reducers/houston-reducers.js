@@ -33,7 +33,7 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SERIAL_PORTS:
-      console.log("Data count:das", state.list_ports);
+      console.log("Data count: ", state.list_ports);
       return {
         ...state,
         list_ports: {
