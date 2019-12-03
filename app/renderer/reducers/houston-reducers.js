@@ -1,6 +1,6 @@
 import {
   SEND_COMMAND,
-  GET_DATA_PORTS, 
+  GET_DATA_PORTS,
   SET_SERIAL_PORTS,
   SENT_COMMAND,
   INCREMENT_EPOCH,
@@ -14,10 +14,10 @@ const initialState = {
   list_ports: {
     listports: []
   },
-  activePort: '',
+  activePort: "",
   timelinedata: [],
   commands: [],
-  timeline_count: 0, // A counter of how many data items we've received. 
+  timeline_count: 0, // A counter of how many data items we've received.
   command_sent_count: 0,
   command_to_send: false,
   epoch: 0,
@@ -33,29 +33,36 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SERIAL_PORTS:
-      console.log("Data count:", state.ports)
-      return { ...state,
+      console.log("Data count:das", state.list_ports);
+      return {
+        ...state,
         list_ports: {
-          ...action.payload,
+          ...action.payload
         }
       };
-     case GET_DATA_PORTS:
-      return { ...state,
+    case GET_DATA_PORTS:
+      return {
+        ...state,
         data_port: {
-          ...action.payload,
+          ...action.payload
         }
       };
     case SEND_COMMAND:
-      console.log("Command", action.payload)
-      return { ...state,
-        commands: [...state.commands, {
-          ...action.payload
-        }],
+      console.log("Command", action.payload);
+      return {
+        ...state,
+        commands: [
+          ...state.commands,
+          {
+            ...action.payload
+          }
+        ],
         command_to_send: true
       };
 
     case SENT_COMMAND:
-      return { ...state,
+      return {
+        ...state,
         commands: state.commands.slice(1),
         command_to_send: false,
         timelinedata: [
@@ -68,14 +75,10 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case INCREMENT_EPOCH:
-      return { ...state,
-        epoch: state.epoch + 1
-      }
+      return { ...state, epoch: state.epoch + 1 };
 
     case SWITCH_MOCK_OBC:
-      return {...state, 
-      mockOBC: action.payload.enable_mock
-    }
+      return { ...state, mockOBC: action.payload.enable_mock };
 
     default:
       return state;

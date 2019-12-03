@@ -10,37 +10,47 @@ class SerialPortConnection extends Component {
     super(props);
 
     this.state = {
-      status: "prossesing",
-      list_ports: this.props.list_ports
+      status: "prossesing"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   async componentDidMount() {
-    console.log(this.props.list_ports);
     console.log(getters);
     getters.LIST_PORTS();
-    await this.getPorts();
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  handleRefresh(e) {
+    e.preventDefault();
+    getters.LIST_PORTS();
+  }
+
   handleSubmit(event) {
     console.log(this.props.list_ports);
 
     event.preventDefault();
-    {
-      this.props.list_ports.map(port => <option value={port}>{port}</option>);
-    }
+
     console.log("CLICK");
   }
 
   render() {
-    console.log(this.props.list_ports);
+    console.table(this.props.list_ports);
+
     console.log(this.state);
 
+    let ports = this.props.list_ports.map(
+      function(port) {
+        return (
+          <option key={port} value={port}>
+            {port}
+          </option>
+        );
+      }.bind(this)
+    );
     return (
       <section className="form-postdata">
         <div className="input-group">
@@ -49,15 +59,25 @@ class SerialPortConnection extends Component {
             value={this.state.status}
             onChange={this.handleChange}
           >
-            {this.props.list_ports.map(port => (
-              <option value={port}>{port}</option>
-            ))}
+            {ports}
           </select>
           <input
             type="submit"
             className="form-control container__input--button"
             value="Connect"
             onClick={this.handleSubmit}
+          />
+          <input
+            type="submit"
+            className="form-control container__input--button"
+            value="Disconect"
+            onClick={this.handleSubmit}
+          />
+          <input
+            type="submit"
+            className="form-control container__input--button"
+            value="Refresh"
+            onClick={this.handleRefresh}
           />
         </div>
       </section>
