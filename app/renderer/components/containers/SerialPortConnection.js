@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as home_actions from "../../actions/houston-actions";
 
-import { listPorts, connectToSerialPort } from "../../modules/ports";
-connectToSerialPort("COM4");
+import { getters, mutations, actions } from "../../modules/ports";
 
 class SerialPortConnection extends Component {
   constructor(props) {

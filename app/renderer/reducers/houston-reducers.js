@@ -6,7 +6,6 @@ import {
   INCREMENT_EPOCH,
   SWITCH_MOCK_OBC
 } from "../actions/action-types";
-import { strictEqual } from "assert";
 
 const initialState = {
   data_port: {
@@ -15,6 +14,7 @@ const initialState = {
   list_ports: {
     listports: []
   },
+  activePort: '',
   timelinedata: [],
   commands: [],
   timeline_count: 0, // A counter of how many data items we've received. 
