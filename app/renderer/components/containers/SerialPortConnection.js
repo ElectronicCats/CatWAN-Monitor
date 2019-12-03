@@ -11,7 +11,6 @@ class SerialPortConnection extends Component {
 
     this.state = {
       status: "prossesing",
-      port: this.props.list_ports[0],
       url: undefined,
       portUrl: undefined
     };
@@ -46,6 +45,7 @@ class SerialPortConnection extends Component {
 
   handlePostData(e) {
     e.preventDefault();
+    actions.CONNECT_TO_SERIALPORT(null, this.state.url, this.state.portUrl);
   }
 
   render() {
@@ -74,11 +74,12 @@ class SerialPortConnection extends Component {
               type="submit"
               className="form-control container__input--button"
               value="Connect"
+              disabled={!this.state.url || !this.state.port}
               onClick={this.handleConnect}
             />
             <input
               type="submit"
-              className="form-control container__input--button"
+              className="form-control container__input--button container__input--refresh"
               value="Refresh"
               onClick={this.handleRefresh}
             />
@@ -100,12 +101,6 @@ class SerialPortConnection extends Component {
                 placeholder="port"
                 name="portUrl"
                 onChange={this.handleChange}
-              />
-              <input
-                type="submit"
-                className="form-control container__input--button"
-                value="Save"
-                onClick={this.handlePostData}
               />
             </div>
           </form>
