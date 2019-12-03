@@ -3,17 +3,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as home_actions from "../../actions/houston-actions";
 
-import { getters, mutations, actions } from "../../modules/ports";
+import { getters, actions } from "../../modules/ports";
 
 class SerialPortConnection extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      status: "prossesing"
+      status: "prossesing",
+      port: this.props.list_ports[0]
     };
+
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleConnect = this.handleConnect.bind(this);
   }
   async componentDidMount() {
     console.log(getters);
@@ -29,12 +32,10 @@ class SerialPortConnection extends Component {
     getters.LIST_PORTS();
   }
 
-  handleSubmit(event) {
-    console.log(this.props.list_ports);
-
-    event.preventDefault();
-
-    console.log("CLICK");
+  handleConnect(e) {
+    e.preventDefault();
+    actions.CONNECT_TO_SERIALPORT(this.state.port);
+    console.log(this.state.port);
   }
 
   render() {
@@ -54,24 +55,15 @@ class SerialPortConnection extends Component {
     return (
       <section className="form-postdata">
         <div className="input-group">
-          <select
-            name="port"
-            value={this.state.status}
-            onChange={this.handleChange}
-          >
+          <select name="port" onChange={this.handleChange}>
+            <option value="Serialport">Serialport</option>
             {ports}
           </select>
           <input
             type="submit"
             className="form-control container__input--button"
             value="Connect"
-            onClick={this.handleSubmit}
-          />
-          <input
-            type="submit"
-            className="form-control container__input--button"
-            value="Disconect"
-            onClick={this.handleSubmit}
+            onClick={this.handleConnect}
           />
           <input
             type="submit"
@@ -86,7 +78,8 @@ class SerialPortConnection extends Component {
 }
 
 const mapStateToProps = state => ({
-  list_ports: state.list_ports.listports
+  list_ports: state.list_ports.listports,
+  activePort: state.activePort
 });
 
 /* Magic to hook up the state to the props */

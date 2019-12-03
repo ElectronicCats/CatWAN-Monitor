@@ -10,6 +10,7 @@ console.log(_state);
 
 export const mutations = {
   SELECT_PORT(port) {
+    console.log(`SELECT_PORT ${port}`);
     _state.activePort = port;
   }
 };
@@ -37,19 +38,19 @@ export const getters = {
 };
 
 export const actions = {
-  CONNECT_TO_SERIALPORT() {
-    if (_state.activePort != null) {
-      var sp = new SerialPort(_state.activePort, { baudRate: 9600 }); // still works if NODE_ENV is set to development!
+  CONNECT_TO_SERIALPORT(port, status) {
+    if (port != null) {
+      var sp = new SerialPort(port, { baudRate: 9600 }); // still works if NODE_ENV is set to development!
       sp.pipe(parser);
-
-      sp.on("open", function(err) {
-        console.log("open port!");
-        parser.on("data", function(data) {
-          console.log("Send data port!");
-          store.dispatch(getDataPort(data));
-        });
-      });
     }
+
+    sp.on("open", function(err) {
+      console.log("open port!");
+      parser.on("data", function(data) {
+        console.log("Send data port!");
+        store.dispatch(getDataPort(data));
+      });
+    });
   }
 };
 
