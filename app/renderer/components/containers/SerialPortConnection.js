@@ -50,7 +50,6 @@ class SerialPortConnection extends Component {
 
   render() {
     console.table(this.props.list_ports);
-
     console.log(this.state);
 
     let ports = this.props.list_ports.map(

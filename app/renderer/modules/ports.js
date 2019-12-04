@@ -47,8 +47,45 @@ export const actions = {
         store.dispatch(getDataPort(data));
         if (url != undefined && portUrl != undefined) {
           console.log(`${url}:${portUrl}`);
+          console.log(data.charAt(0))
           axios
-            .post(`${url}:${portUrl}`, { data })
+            .post(`${url}:${portUrl}`, [
+              {
+                "type": "uplink",
+                "payload": {
+                  "adr": false,
+                  "applicationID": "1",
+                  "applicationName": "Relay",
+                  "data": "AXQs7AKABAMDgAQDA4MAAdyQBGcA3A==",
+                  "devEUI": "0000000000000000",
+                  "deviceName": "Relay1",
+                  "fCnt": 1,
+                  "fPort": 1,
+                  "object": {
+                    "d1": data.charAt(0),
+                    "d2": data.charAt(1),
+                    "d3": data.charAt(2)
+                  },
+                  "rxInfo": [
+                    {
+                      "gatewayID": "USBStick",
+                      "loRaSNR": 2,
+                      "location": {
+                        "altitude": 0,
+                        "latitude": 0,
+                        "longitude": 0
+                      },
+                      "name": "USBStick",
+                      "rssi": -108
+                    }
+                  ],
+                  "txInfo": {
+                    "dr": 3,
+                    "frequency": 90200000
+                  }
+                }
+              }
+            ])
             .then(function(response) {
               console.log(response);
             })
