@@ -1,0 +1,4 @@
+owner: jschr
+repo: electron-react-redux-boilerplate
+provider: github
+updaterCacheDirName: electron-react-redux-boilerplate-updater
