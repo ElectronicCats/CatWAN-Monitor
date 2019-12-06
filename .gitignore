@@ -15,3 +15,5 @@ build
 \.travis\.yml
 
 \.vscode/settings\.json
+
+dist/
