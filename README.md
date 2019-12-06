@@ -13,6 +13,7 @@ CatWAN Monitor permite conectar, monitorear y controlar por medio de un puerto s
 
 - Node.js
 - React
+- Redux
 - Electron
 
 # License
