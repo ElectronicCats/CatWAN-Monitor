@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-//import "../style/GridContainer.css";
 
 //REDUX
 import { connect } from "react-redux";
-import * as home_actions from "../../actions/houston-actions";
+import * as home_actions from "../../actions/catwan-actions";
 
 /**
  * Component
@@ -18,17 +17,17 @@ class GridContainer extends Component {
         {/*<CommandSubmit /> send data from serial port*/}
         <MDBRow className="justify-content-center">
           <MDBCol md="3" className="container__row--col">
-            <span className="container__row--span">D1</span>
+            <span className="container__row--span">data 1</span>
             <br />
             {this.props.data_port.data.charAt(0)}
           </MDBCol>
           <MDBCol md="3" className="container__row--col">
-            <span className="container__row--span">D2</span>
+            <span className="container__row--span">data 2</span>
             <br />
             {this.props.data_port.data.charAt(1)}
           </MDBCol>
           <MDBCol md="3" className="container__row--col">
-            <span className="container__row--span">D3</span>
+            <span className="container__row--span">data 3</span>
             <br />
             {this.props.data_port.data.charAt(2)}
           </MDBCol>
