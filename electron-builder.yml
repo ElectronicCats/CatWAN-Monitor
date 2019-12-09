@@ -1,6 +1,5 @@
-appId: com.example.app
-copyright: Example co
-productName: MyApp
+appId: com.CatWAN-Monitor.app
+productName: CatWAN-Monitor
 
 asar: true
 
