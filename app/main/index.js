@@ -47,6 +47,8 @@ app.on("ready", async () => {
     show: false
   });
 
+  mainWindow.setIcon(path.join(__dirname, '../renderer/logo.ico'));
+  
   mainWindow.loadFile(
     path.resolve(path.join(__dirname, "../renderer/index.html"))
   );
