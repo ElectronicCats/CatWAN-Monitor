@@ -12,8 +12,10 @@
 .container__row--span {
   color: var(--white);
   padding: 5px;
-  border-radius: 50%;
-  background-color: var(--error);
+  border-radius: 5px;
+  /*background-color: var(--cyan);*/
+  font-size: 20px;
+  
 }
 
 .container__input {
@@ -54,11 +56,11 @@ input[type="submit"] {
 }
 input[type="submit"]:disabled {
   cursor: not-allowed;
-  background-color: darkred;
+  background-color: var(--gray  );
 }
 input[type="submit"]:disabled:hover {
   cursor: not-allowed;
-  background-color: darkred;
+  background-color: var(--gray);
 }
 input[type="submit"]:hover {
   background-color: #009066;
