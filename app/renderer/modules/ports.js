@@ -34,7 +34,7 @@ export const getters = {
 
 export const actions = {
   CONNECT_TO_SERIALPORT(port, url, portUrl) {
-    store.dispatch(getDataPort("???"));
+    store.dispatch(getDataPort("..."));
     if (port != null) {
       var sp = new SerialPort(port, { baudRate: 9600 });
       sp.pipe(parser);
@@ -99,4 +99,4 @@ export const actions = {
 };
 
 //store.subscribe(connectToSerialPort);
-store.dispatch(getDataPort("???"));
+store.dispatch(getDataPort("..."));
