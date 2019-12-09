@@ -10,9 +10,9 @@ CatWAN Monitor permite conectar, monitorear y controlar por medio de un puerto s
 
 ## Install advance
 
-* ### git clone `https://github.com/ElectronicCats/CatWAN-Monitor.git`
-* ### `cd CatWAN-Monitor`
-* ### `npm start`
+* git clone `https://github.com/ElectronicCats/CatWAN-Monitor.git`
+* `cd CatWAN-Monitor`
+* `npm start`
 
 
 ## Tecnologias del proyecto.
