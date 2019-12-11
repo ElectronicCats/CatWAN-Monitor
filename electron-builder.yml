@@ -1,5 +1,5 @@
-appId: com.CatWAN-Monitor.app
-productName: CatWAN-Monitor
+appId: com.CatWAN_Monitor.app
+productName: CatWAN_Monitor
 
 asar: true
 
