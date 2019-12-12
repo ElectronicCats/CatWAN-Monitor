@@ -28,8 +28,8 @@
     "redux": "^4.0.0",
     "redux-actions": "^2.2.1",
     "redux-localstorage": "^0.4.1",
-    "serialport": "7.1.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "serialport": "^8.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -42,7 +42,7 @@
     "babel-eslint": "^10.0.1",
     "browser-sync": "^2.26.7",
     "chai": "^4.1.0",
-    "electron": "^3.0.0",
+    "electron": "^4.0.4",
     "electron-builder": "^20.0.7",
     "electron-devtools-installer": "^2.2.4",
     "electron-mocha": "^6.0.1",
@@ -56,11 +56,11 @@
     "prettier": "^1.13.7",
     "redux-mock-store": "^1.2.2",
     "rimraf": "^2.5.4",
-    "serialport": "7.1.0"
+    "serialport": "^8.0.5"
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "rebuild": "electron-rebuild",
+    "inst": "electron-rebuild",
     "start": "npm run private:compile -- --source-maps true && run-p -r private:watch private:serve",
     "test": "electron-mocha --renderer -R spec --require @babel/register test/**/*.spec.js",
     "lint": "eslint --no-ignore scripts app test *.js",
