@@ -14,10 +14,12 @@ export const getters = {
   async LIST_PORTS() {
     console.log("LIST_PORTS()");
     console.log(_state.activePort);
-
     let all_ports = [];
-    await SerialPort.list(function(err, ports) {
+    await SerialPort.list().then(ports => {
       ports.forEach(function(port) {
+        console.log(port.path);
+        console.log(port.pnpId);
+        console.log(port.manufacturer);
         all_ports.push(port.comName);
       });
     });
@@ -47,41 +49,41 @@ export const actions = {
         store.dispatch(getDataPort(data));
         if (url != undefined && portUrl != undefined) {
           console.log(`${url}:${portUrl}`);
-          console.log(data.charAt(0))
+          console.log(data.charAt(0));
           axios
             .post(`${url}:${portUrl}`, [
               {
-                "type": "uplink",
-                "payload": {
-                  "adr": false,
-                  "applicationID": "1",
-                  "applicationName": "Relay",
-                  "data": "AXQs7AKABAMDgAQDA4MAAdyQBGcA3A==",
-                  "devEUI": "0000000000000000",
-                  "deviceName": "Relay1",
-                  "fCnt": 1,
-                  "fPort": 1,
-                  "object": {
-                    "d1": data.charAt(0),
-                    "d2": data.charAt(1),
-                    "d3": data.charAt(2)
+                type: "uplink",
+                payload: {
+                  adr: false,
+                  applicationID: "1",
+                  applicationName: "Relay",
+                  data: "AXQs7AKABAMDgAQDA4MAAdyQBGcA3A==",
+                  devEUI: "0000000000000000",
+                  deviceName: "Relay1",
+                  fCnt: 1,
+                  fPort: 1,
+                  object: {
+                    d1: data.charAt(0),
+                    d2: data.charAt(1),
+                    d3: data.charAt(2)
                   },
-                  "rxInfo": [
+                  rxInfo: [
                     {
-                      "gatewayID": "USBStick",
-                      "loRaSNR": 2,
-                      "location": {
-                        "altitude": 0,
-                        "latitude": 0,
-                        "longitude": 0
+                      gatewayID: "USBStick",
+                      loRaSNR: 2,
+                      location: {
+                        altitude: 0,
+                        latitude: 0,
+                        longitude: 0
                       },
-                      "name": "USBStick",
-                      "rssi": -108
+                      name: "USBStick",
+                      rssi: -108
                     }
                   ],
-                  "txInfo": {
-                    "dr": 3,
-                    "frequency": 90200000
+                  txInfo: {
+                    dr: 3,
+                    frequency: 90200000
                   }
                 }
               }
