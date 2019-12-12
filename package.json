@@ -7,7 +7,7 @@
     "name": "Electronic Cats",
     "email": "oscar.raygoza@electroniccats.com"
   },
-  "repository": "https://github.com/jschr/electron-react-redux-boilerplate",
+  "repository": "https://github.com/ElectronicCats/CatWAN-Monitor",
   "license": "MIT",
   "dependencies": {
     "@babel/register": "^7.0.0",

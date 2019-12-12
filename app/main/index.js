@@ -47,7 +47,7 @@ app.on("ready", async () => {
     icon: path.join(__dirname, "../renderer/logoXL.png"),
     show: false
   });
-
+  mainWindow.setIcon(path.join(__dirname, "../renderer/logoXL.png"));
   mainWindow.loadFile(
     path.resolve(path.join(__dirname, "../renderer/index.html"))
   );
