@@ -1,6 +1,6 @@
 {
   "name": "catwanmonitor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CatWAN Monitor permite conectar, monitorear y controlar por medio de un puerto serial los dispositivos de la CatWAN de Electronic Cats y enviar la información recibida a un servidor por medio de un HTTP POST.",
   "main": "init.js",
   "author": {
