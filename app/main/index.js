@@ -44,9 +44,9 @@ app.on("ready", async () => {
     height: 800,
     minWidth: 640,
     minHeight: 480,
+    icon: path.join(__dirname, "../renderer/logoXL.png"),
     show: false
   });
-
 
   mainWindow.loadFile(
     path.resolve(path.join(__dirname, "../renderer/index.html"))
