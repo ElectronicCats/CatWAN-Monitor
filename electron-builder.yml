@@ -30,7 +30,7 @@ mac:
 
 win:
   target: nsis
-  icon: app/renderer/logoXL.ico
+  icon: app/renderer/logoXL.icns
 
 linux:
   target:
