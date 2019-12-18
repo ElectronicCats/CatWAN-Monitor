@@ -41,10 +41,12 @@
   "dependencies": {
     "@babel/register": "^7.0.0",
     "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "browser-serialport": "^2.1.0",
     "connected-react-router": "^5.0.1",
     "electron-require": "^0.3.0",
+    "express": "^4.17.1",
     "history": "^4.6.3",
     "jquery": "^3.4.1",
     "mdbreact": "4.21.0",
@@ -90,6 +92,7 @@
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "install": "electron-rebuild",
+    "server": "node app/server-test.js",
     "start": "npm run private:compile -- --source-maps true && run-p -r private:watch private:serve",
     "test": "electron-mocha --renderer -R spec --require @babel/register test/**/*.spec.js",
     "lint": "eslint --no-ignore scripts app test *.js",
