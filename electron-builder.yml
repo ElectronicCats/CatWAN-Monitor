@@ -26,11 +26,9 @@ dmg:
 mac:
   target: dmg
   category: public.app-category.tools
-  icon: app/renderer/logoXL.ico
 
 win:
   target: nsis
-  icon: app/renderer/logoXL.ico
 
 linux:
   target:
