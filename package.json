@@ -16,7 +16,6 @@
     },
     "lin": {
       "icon": "app/renderer/logoXL.png"
-
     }
   },
   "repository": "https://github.com/ElectronicCats/CatWAN-Monitor",
@@ -72,7 +71,7 @@
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "inst": "electron-rebuild",
+    "install": "electron-rebuild",
     "start": "npm run private:compile -- --source-maps true && run-p -r private:watch private:serve",
     "test": "electron-mocha --renderer -R spec --require @babel/register test/**/*.spec.js",
     "lint": "eslint --no-ignore scripts app test *.js",
