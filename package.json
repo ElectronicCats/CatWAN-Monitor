@@ -12,7 +12,7 @@
       "icon": "app/renderer/logoXL.png"
     },
     "mac": {
-      "icon": "app/renderer/logoXL.icns"
+      "icon": "app/renderer/logoXL.png"
     },
     "lin": {
       "icon": "app/renderer/logoXL.png"
