@@ -4,15 +4,15 @@ CatWAN Monitor permite conectar, monitorear y controlar por medio de un puerto s
 
 
 ## Quick start
-1. Descargar ejecutable dependiendo su sistema operativo
+1. Descargar ejecutable dependiendo su sistema operativo en [releases](https://github.com/ElectronicCats/CatWAN-Monitor/releases)
 2. Ejecutar y seleccionar puerto serial
-3. Insertar link y puerto para enviar JSON con información
+3. Insertar link del servidor y puerto para enviar JSON con información.
 
-## advanced install 
+## Advanced Install 
 
-* git clone `https://github.com/ElectronicCats/CatWAN-Monitor.git`
-* `cd CatWAN-Monitor`
-* `npm start`
+1. git clone `https://github.com/ElectronicCats/CatWAN-Monitor.git`
+2. `cd CatWAN-Monitor`
+3. `npm start`
 
 
 ## Tecnologias del proyecto.
