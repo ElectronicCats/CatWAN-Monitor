@@ -11,13 +11,16 @@ class SerialPortConnection extends Component {
 
     this.state = {
       status: "prossesing",
-      url: undefined,
-      portUrl: undefined
+      url: "http://",
+      portUrl: undefined,
+      connect: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
     this.handleConnect = this.handleConnect.bind(this);
+    this.handleDisconnect = this.handleDisconnect.bind(this);
+
   }
   async componentDidMount() {
     console.log(getters);
@@ -38,9 +41,31 @@ class SerialPortConnection extends Component {
     actions.CONNECT_TO_SERIALPORT(
       this.state.port,
       this.state.url,
-      this.state.portUrl
+      this.state.portUrl,
+      this.state.connect
     );
+
+    this.setState({
+      ...this.state,
+      connect: true
+    })
+
     console.log(this.state.port);
+  }
+
+  handleDisconnect(e) {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      connect: false
+    })
+    console.log(this.state.connect)
+    actions.CONNECT_TO_SERIALPORT(
+      this.state.port,
+      this.state.url,
+      this.state.portUrl,
+      this.state.connect
+    );
   }
 
   handlePostData(e) {
@@ -73,8 +98,15 @@ class SerialPortConnection extends Component {
               type="submit"
               className="form-control container__input--button"
               value="Connect"
-              disabled={!this.state.url || !this.state.port}
+              disabled={!this.state.url || !this.state.port || this.state.url === "Serialport"}
               onClick={this.handleConnect}
+            />
+            <input
+              type="submit"
+              className="form-control container__input--button"
+              value="Disconnect"
+              disabled={!this.state.url || !this.state.port || this.state.connect === false}
+              onClick={this.handleDisconnect}
             />
             <input
               type="submit"
@@ -91,6 +123,7 @@ class SerialPortConnection extends Component {
                 type="text"
                 className="form-control container__input"
                 placeholder="Url"
+                value={this.state.url}
                 name="url"
                 onChange={this.handleChange}
               />
