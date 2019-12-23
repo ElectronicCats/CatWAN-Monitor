@@ -23,84 +23,87 @@ export const getters = {
         all_ports.push(port.comName);
       });
     });
-    console.log(all_ports);
 
     store.dispatch(setSerialPorts(all_ports));
-
-    if (_state.list_ports.listports.length > 0) {
-      console.log(`State list ports: ${_state.list_ports.listports.length}`);
-      //store.dispatch(sentCommand(_state.commands[0]));
-    }
   }
 };
 
+function __SET_PORT() {
+  var sp = new SerialPort(this.port, { baudRate: 9600 });
+  sp.pipe(parser);
+  console.log(sp);
+  return sp;
+}
 export const actions = {
   CONNECT_TO_SERIALPORT(port, url, urlPort, connection) {
     store.dispatch(getDataPort("..."));
-    var sp = new SerialPort(port, { baudRate: 9600 });
-    sp.pipe(parser);   
-    console.log(sp);
+    const sp = __SET_PORT.call(port);
+    if (connection) {
+      //sp.close();
+    }
 
-    let __url = url;
-    let __urlPort = urlPort;
-    
-    sp.on("open", function(err) {
-      console.log("open port!");
-      parser.on("data", function(data) {
-        try {
-          console.log("Send data port!");
-          store.dispatch(getDataPort(data));
-          if (__url != undefined && __urlPort != undefined) {
-            axios
-              .post(`${__url}:${__urlPort}`, [
-                {
-                  type: "uplink",
-                  payload: {
-                    adr: false,
-                    applicationID: "1",
-                    applicationName: "Relay",
-                    data: "AXQs7AKABAMDgAQDA4MAAdyQBGcA3A==",
-                    devEUI: "0000000000000000",
-                    deviceName: "Relay1",
-                    fCnt: 1,
-                    fPort: 1,
-                    object: {
-                      d1: data.charAt(0),
-                      d2: data.charAt(1),
-                      d3: data.charAt(2)
-                    },
-                    rxInfo: [
-                      {
-                        gatewayID: "USBStick",
-                        loRaSNR: 2,
-                        location: {
-                          altitude: 0,
-                          latitude: 0,
-                          longitude: 0
-                        },
-                        name: "USBStick",
-                        rssi: -108
+    if (!connection) {
+      let __url = url;
+      let __urlPort = urlPort;
+      console.table("ENTRY IN FUNCTION");
+      sp.on("open", function(err) {
+        console.log("open port!");
+        parser.on("data", function(data) {
+          try {
+            console.log("Send data port!");
+            store.dispatch(getDataPort(data));
+            if (__url != undefined && __urlPort != undefined) {
+              axios
+                .post(`${__url}:${__urlPort}`, [
+                  {
+                    type: "uplink",
+                    payload: {
+                      adr: false,
+                      applicationID: "1",
+                      applicationName: "Relay",
+                      data: "AXQs7AKABAMDgAQDA4MAAdyQBGcA3A==",
+                      devEUI: "0000000000000000",
+                      deviceName: "Relay1",
+                      fCnt: 1,
+                      fPort: 1,
+                      object: {
+                        d1: data.charAt(0),
+                        d2: data.charAt(1),
+                        d3: data.charAt(2)
+                      },
+                      rxInfo: [
+                        {
+                          gatewayID: "USBStick",
+                          loRaSNR: 2,
+                          location: {
+                            altitude: 0,
+                            latitude: 0,
+                            longitude: 0
+                          },
+                          name: "USBStick",
+                          rssi: -108
+                        }
+                      ],
+                      txInfo: {
+                        dr: 3,
+                        frequency: 90200000
                       }
-                    ],
-                    txInfo: {
-                      dr: 3,
-                      frequency: 90200000
                     }
                   }
-                }
-              ])
-              .then(function(response) {
-                console.log(response);
-              })
-              .catch(function(error) {
-                console.log(error);
-              });
+                ])
+                .then(function(response) {
+                  console.log(response);
+                })
+                .catch(function(error) {
+                  console.log(error);
+                });
             }
-        }catch(e){
-          console.log(e.message)
-        }        
+          } catch (e) {
+            console.log(e.message);
+          }
+        });
       });
-    });
+    }
   }
 };
 
