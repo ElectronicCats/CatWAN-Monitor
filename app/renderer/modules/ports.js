@@ -25,19 +25,21 @@ export const getters = {
     });
 
     store.dispatch(setSerialPorts(all_ports));
+  },
+  __SET_PORT() {
+    console.log(this.port);
+    var sp = new SerialPort(this.port, { baudRate: 9600 });
+    sp.pipe(parser);
+    console.log(sp);
+    return sp;
   }
 };
 
-function __SET_PORT() {
-  var sp = new SerialPort(this.port, { baudRate: 9600 });
-  sp.pipe(parser);
-  console.log(sp);
-  return sp;
-}
 export const actions = {
   CONNECT_TO_SERIALPORT(port, url, urlPort, connection) {
     store.dispatch(getDataPort("..."));
-    const sp = __SET_PORT.call(port);
+    const state = { port, url, urlPort, connection };
+    const sp = getters.__SET_PORT.call(state);
     if (connection) {
       //sp.close();
     }
