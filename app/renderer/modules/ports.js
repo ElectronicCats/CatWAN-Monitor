@@ -147,8 +147,14 @@ export const actions = {
                 if (error) throw error; // Handle the error just in case
               }
             );
-
-            timeDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}, hr: ${date.getHours()} min: ${date.getMinutes()}`;
+            let minutes =
+              date.getMinutes() < 10
+                ? `0${date.getMinutes()}`
+                : date.getMinutes();
+            let hours =
+              date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+            timeDate = `timestap: ${date.getMonth() +
+              1}/${date.getDate()}/${date.getFullYear()}, ${hours}:${minutes} (GMT-5)`;
           } catch (e) {
             console.log(e.message);
           }
