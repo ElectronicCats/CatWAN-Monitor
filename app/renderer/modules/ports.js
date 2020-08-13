@@ -92,8 +92,11 @@ export const actions = {
                       }
                     }
                   }
-                ])
-                .then(function(response) {
+                ],{
+                  headers: {
+                    'Content-Type': 'application/json',
+                  }
+                }).then(function(response) {
                   console.log(response);
                 })
                 .catch(function(error) {
