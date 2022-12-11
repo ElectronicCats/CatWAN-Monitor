@@ -46,7 +46,7 @@
     "browser-serialport": "2.1.0",
     "connected-react-router": "5.0.1",
     "electron-require": "0.3.0",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "history": "4.6.3",
     "jquery": "3.5.0",
     "mdbreact": "4.21.0",
